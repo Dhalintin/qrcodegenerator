@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <p>Enter Text or Url</p>
+        <textarea type="input" id="qrText" rows="10" placeholder="Enter the details you want to encode" maxlength="500"></textarea>
+        <div id="wordcount"><span id="textCount">0</span>/500</div>
+        <div id="image">
+            <img src="" id="qrImage" alt="">
+            <button id="download-qr-code">Download QR Code</button>
+        </div>
+        <button onclick="generateQRCode()">Generate QR Code</button>
+    </div>
+
+
+    <script src="./qrcode.js"></script>
+</body>
+</html>
