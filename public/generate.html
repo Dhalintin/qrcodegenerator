@@ -16,35 +16,39 @@
           <!-- Name Field -->
           <div class="flex flex-wrap -mx-3 mb-2">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
-                First Name
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
+                First Name <span class="flex items-end text-red-400 ml-52 md:ml-60">*</span>
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Jane">
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Firstname" required>
             </div>
             <div class="w-full md:w-1/2 px-3">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
-                Last Name
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
+                Last Name <span class="flex items-end text-red-400 ml-52 md:ml-60">*</span>
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" type="text" placeholder="Doe">
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" type="text" placeholder="Lastname" required>
             </div>
           </div>
           <!-- End of name field -->
           <div class="flex flex-wrap -mx-3 mb-6">
             <!-- Email field -->
             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
-                Email
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
+                Email <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-64 md:pl-4">*</span>
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email">
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email" required>
             </div>
             <!-- End of Email field -->
             <!-- Phone -->
             <div class="w-full md:w-1/2 px-3">
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
-                Phone
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
+                Phone    <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-64 md:pl-4">*</span>
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phone" type="text" placeholder="Phone Number">
-              <div class="mt-1"><input type="checkbox" name="" id="" class="checked:bg-blue-500 bg-white appearance-none w-4 h-4 rounded-full border border-gray-400 mt-1">Same as whatsapp number</div>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phone" type="text" placeholder="Phone Number" required>
+              <div class="mt-1 flex">
+                Same as
+                <input type="checkbox" name="whatsapp-check" id="whatsapp-check" class="rounded-full h-4 w-4 mt-1 mx-2">Whatsapp
+                <input type="checkbox" name="telegram-check" id="telegram-check" class="rounded-full h-4 w-4 mt-1 mx-2">Telegram
+              </div>
             </div>
             <!-- End of Phone -->
           </div>
@@ -83,32 +87,32 @@
             <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
                 <img src="./images/facebook2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
                 <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
-                <input type="text" name="facebook" id="facebook" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+                <input type="text" name="facebook" id="facebook" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
         <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
             <img src="./images/instagram2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
             <span class="text-xs tracking-tight pt-2 pl-1 text-gray-400">https://www.instagram.com/</span>
-            <input type="text" name="instagram" id="instagram" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+            <input type="text" name="instagram" id="instagram" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
         <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
             <img src="./images/whatsapp2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
-            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
-            <input type="text" name="whatsapp" id="whatsapp" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.wa.me/</span>
+            <input type="text" name="whatsapp" id="whatsapp" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
         <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
             <img src="./images/linkedin2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
             <span class="text-xs tracking-tight pt-2 pl-1 text-gray-400">https://www.linkedin.com/in/</span>
-            <input type="text" name="linkedin" id="linkedin" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+            <input type="text" name="linkedin" id="linkedin" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
         <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
             <img src="./images/x2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
             <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://twitter.com/</span>
-            <input type="text" name="x" id="x" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+            <input type="text" name="x" id="x" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
         <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
             <img src="./images/telegram.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
             <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://t.me/</span>
-            <input type="text" name="telegram" id="telegram" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+            <input type="text" name="telegram" id="telegram" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
         <div class="flex justify-center mt-12">
             <button type="submit" class="text-xl font-bold text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg px-8 py-3 shadow-lg" onclick="generateQRCode()">Store & Generate QR</button>
@@ -117,17 +121,80 @@
       </form>
     </div>
   </div>
-
-  <!-- <div class="container">
-        <p>Enter Text or Url</p>
-        <textarea type="input" id="qrText" rows="10" placeholder="Enter the details you want to encode" maxlength="500"></textarea>
-        <div id="wordcount"><span id="textCount">0</span>/500</div>
-        <div id="image">
-            <img src="" id="qrImage" alt="">
-            <button id="download-qr-code">Download QR Code</button>
-        </div>
-        <button onclick="generateQRCode()">Generate QR Code</button>
-    </div> -->
 </body>
-    <script src="./js/qrcode.js"></script>
+  <script>
+    const downloadButton = document.getElementById("download-qr-code");
+
+    // Text Content
+    const telegram = document.getElementById("telegram");
+    const twitter = document.getElementById("twitter");
+    const linkedin = document.getElementById("linkedin");
+    const whatsapp = document.getElementById("whatsapp");
+    const facebook = document.getElementById("facebook");
+    const instagram = document.getElementById("instagram");
+    const about = document.getElementById("about");
+    const address = document.getElementById("address");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const lastName = document.getElementById("last-name");
+    const firstName = document.getElementById("first-name");
+    const whatsappCheck = document.getElementById('whatsapp-check');
+    const telegramCheck = document.getElementById("telegram-check");
+
+    whatsappCheck.addEventListener('change', ()=>{
+        if(whatsappCheck.checked && phone.value.length > 0){
+          whatsapp.value = phone.value;
+        }else{
+          whatsappCheck.checked = false
+          whatsapp.value = "";
+        }
+    })
+
+    telegramCheck.addEventListener('change', ()=>{
+        if(telegramCheck.checked && phone.value.length > 0){
+            telegram.value = phone.value;
+        }else{
+            telegramCheck.checked = false
+            telegram.value = "";
+        }
+    });
+
+    phone.addEventListener('keyup', (event) => {
+      if(whatsappCheck.checked){
+        whatsapp.value = phone.value;
+      }
+      if(telegramCheck.checked){
+        telegram.value = phone.value;
+      }
+    });
+
+    function generateQRCode() {
+        fetch('http://127.0.0.1:3000/api/v1/user/save', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: {
+                "firstname": firstName.value ? firstName.value : "",
+                "lastname": lastName.value ? lastName.value : "",
+                "email": email.value ? email.value : "",
+                "address": address.value ? address.value : "",
+                "about": about.value ? about.value : "",
+                "phone": phone.value ? phone.value : "",
+                "facebook": facebook.value ? `https://www.facebook.com/${facebook.value}` : "",
+                "linkedin": linkedin.value ? `https://www.linkedin.com/in/${linkedin.value}` : "",
+                "instagram": instagram ? `https://www.instagram.com/${instagram}` : "",
+                "whatsapp": whatsapp.value ? `https://www.wa.me/${whatsapp.value}` : "",
+                "telegram": telegram.value ? `t.me/${telegram.value}` : "",
+                "twitter": twitter.value ? `https://twitter.com/${twitter.value}` : "",
+              },
+        }).then(response => response.json())
+          .then(data => {
+                alert(data);
+          }).catch(error => {
+              console.error('Error fetching data:', error);
+            });
+    }
+  </script>
+    
 </html>
