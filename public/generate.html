@@ -5,10 +5,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="container">
+  <div class="flex justify-center items-center md:h-screen h-full text-gray-200">
+    <div class="md:w-3/4 rounded-sm shadow-lg shadow-gray-900 bg-slate-800 p-4">
+      <form method="POST" class="w-full h-full md:grid md:grid-cols-3">
+        <div class="md:grid md:col-span-2">
+          <!-- Name Field -->
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
+                First Name
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Jane">
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
+                Last Name
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" type="text" placeholder="Doe">
+            </div>
+          </div>
+          <!-- End of name field -->
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <!-- Email field -->
+            <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
+                Email
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email">
+            </div>
+            <!-- End of Email field -->
+            <!-- Phone -->
+            <div class="w-full md:w-1/2 px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
+                Phone
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phone" type="text" placeholder="Phone Number">
+              <div class="mt-1"><input type="checkbox" name="" id="" class="checked:bg-blue-500 bg-white appearance-none w-4 h-4 rounded-full border border-gray-400 mt-1">Same as whatsapp number</div>
+            </div>
+            <!-- End of Phone -->
+          </div>
+          <!-- Address -->
+          <div class="flex -mx-3 mb-3">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="address">
+                Address
+              </label>
+              <textarea name="address" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+            </div>
+          </div>
+          <!-- End of Address -->
+
+          <!-- About -->
+          <div class="flex -mx-3 mb-3">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="about">
+                About Yourself
+              </label>
+              <textarea name="about" id="about" rows="5" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+            </div>
+          </div>
+          <!-- End of About -->
+        </div>
+        <div>
+          <div class="md:shrink-0 flex justify-center md:pl-6">
+            <div id="image-preview" class="hidden h-24 w-24 rounded-md bg-gray-200"></div>
+            <label class="block">
+                <span class="">Choose profile photo</span>
+                <input type="file" id="name" name="image" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100
+                "/>
+          </label>
+        </div>
+        <div class="md:pl-6 mt-2 text-gray-700">
+            <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+                <img src="./images/facebook2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+                <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
+                <input type="text" name="facebook" id="facebook" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/instagram2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-xs tracking-tight pt-2 pl-1 text-gray-400">https://www.instagram.com/</span>
+            <input type="text" name="instagram" id="instagram" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/whatsapp2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
+            <input type="text" name="whatsapp" id="whatsapp" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/linkedin2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-xs tracking-tight pt-2 pl-1 text-gray-400">https://www.linkedin.com/in/</span>
+            <input type="text" name="linkedin" id="linkedin" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/x2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://twitter.com/</span>
+            <input type="text" name="x" id="x" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/telegram.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://t.me/</span>
+            <input type="text" name="telegram" id="telegram" class="rounded-lg border-none focus:outline-none ml-1 w-24">
+        </div>
+        <div class="flex justify-center mt-12">
+            <button type="submit" class="text-xl font-bold text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg px-8 py-3 shadow-lg" onclick="generateQRCode()">Store & Generate QR</button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- <div class="container">
         <p>Enter Text or Url</p>
         <textarea type="input" id="qrText" rows="10" placeholder="Enter the details you want to encode" maxlength="500"></textarea>
         <div id="wordcount"><span id="textCount">0</span>/500</div>
@@ -17,9 +127,7 @@
             <button id="download-qr-code">Download QR Code</button>
         </div>
         <button onclick="generateQRCode()">Generate QR Code</button>
-    </div>
-
-
-    <script src="./qrcode.js"></script>
+    </div> -->
 </body>
+    <script src="./js/qrcode.js"></script>
 </html>
