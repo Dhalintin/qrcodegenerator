@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="flex justify-center items-center md:h-screen h-full text-gray-200">
+    <div class="md:w-3/4 rounded-sm shadow-lg shadow-gray-900 bg-slate-800 p-4">
+      <h1>User: <%= user.name %></h1>  <ul>
+        <% for (const social of userSocials) { %>
+          <li><%= social.platform %>: <%= social.link %></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
