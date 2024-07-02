@@ -3,6 +3,7 @@ const Joi = require('joi');
 const userSchemaValidation = Joi.object({
     firstname: Joi.string().min(2).required(),
     lastname: Joi.string().min(2).required(),
+    jobtitle: Joi.string().required(),
     email: Joi.string().email().required(),
     address: Joi.string().min(2).required(),
     about: Joi.string().min(2).required(),

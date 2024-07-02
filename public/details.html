@@ -32,23 +32,19 @@
           <div class="flex flex-wrap -mx-3 mb-6">
             <!-- Email field -->
             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
-                Email <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-64 md:pl-4">*</span>
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
+                Job Title<span class="flex items-end text-red-400 ml-56 pl-3 md:ml-56 md:pl-4">*</span>
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email" required>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobtitle" type="text" placeholder="Job Title" required>
             </div>
             <!-- End of Email field -->
             <!-- Phone -->
             <div class="w-full md:w-1/2 px-3">
-              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
-                Phone    <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-64 md:pl-4">*</span>
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
+                Email <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-64 md:pl-4">*</span>
               </label>
-              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phone" type="text" placeholder="Phone Number" required>
-              <div class="mt-1 flex">
-                Same as
-                <input type="checkbox" name="whatsapp-check" id="whatsapp-check" class="rounded-full h-4 w-4 mt-1 mx-2">Whatsapp
-                <input type="checkbox" name="telegram-check" id="telegram-check" class="rounded-full h-4 w-4 mt-1 mx-2">Telegram
-              </div>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email" required>
+              
             </div>
             <!-- End of Phone -->
           </div>
@@ -75,15 +71,17 @@
           <!-- End of About -->
         </div>
         <div>
-          <div class="md:shrink-0 flex justify-center md:pl-6">
-            <div id="image-preview" class="hidden h-24 w-24 rounded-md bg-gray-200"></div>
-            <label class="block">
-                <span class="">Choose profile photo</span>
-                <input type="file" id="name" name="image" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100
-                "/>
-          </label>
-        </div>
-        <div class="md:pl-6 mt-2 text-gray-700">
+          <div class="mx-4 pt-3">
+            <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
+              Phone    <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-56 md:pl-6">*</span>
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phone" type="text" placeholder="Phone Number" required>
+            <div class="mt-1 flex">
+              <input type="checkbox" name="whatsapp-check" id="whatsapp-check" class="rounded-full h-4 w-4 mt-1 mx-2">Whatsapp
+              <input type="checkbox" name="telegram-check" id="telegram-check" class="rounded-full h-4 w-4 mt-1 mx-2">Telegram
+            </div>
+          </div>
+          <div class="md:pl-6 mt-2 md:mt-5 text-gray-700">
             <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
                 <img src="./images/facebook2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
                 <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
@@ -114,8 +112,8 @@
             <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://t.me/</span>
             <input type="text" name="telegram" id="telegram" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
-        <div class="flex justify-center mt-12">
-            <button type="submit" class="text-xl font-bold text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg px-8 py-3 shadow-lg">Store & Generate QR</button>
+        <div class="flex justify-center mt-2">
+            <button type="submit" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-2xl px-20 py-2 text-center me-2 mb-2">Store</button>
         </div>
         </div>
       </form>
@@ -168,7 +166,7 @@
       }
     });
 
-    async function generateQRCode() {
+    async function saveData() {
       try {
         fetch('/api/save', {
           method: 'POST',
@@ -194,10 +192,9 @@
         .then(data => {
           if (data.success) {
             alert(data.message)
-            window.location.href = `/generate/${data.user._id}?id=${data.user._id}`;
+            window.location.href = `/upload/${data.data.user._id}?id=${data.data.user._id}`;
           }else{
             alert(data.message)
-            // window.location.href = `/generate/${data._id}?id=${data._id}`;
           }
         })
         .catch(error => {
@@ -212,7 +209,7 @@
     const formD = document.getElementById('form');
     formD.addEventListener('submit', async (event) => {
       event.preventDefault();
-      await generateQRCode();
+      await saveData();
     });
   </script>
     

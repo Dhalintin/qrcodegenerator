@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Function to get query parameters
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+  
+      // Get the 'id' parameter from the URL
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const userID = getQueryParam('id');
+      });
+    </script>
+</head>
+<body>
+  <div class="flex justify-center items-center md:h-screen h-full">
+    <div class="flex items-center md:h-4/5 md:w-3/5 rounded-sm bg-slate-900 shadow-lg shadow-slate-950 text-white px-8 py-8">
+      <div class="flex items-center justify-center w-full">
+        <form action="" method="POST" enctype="multipart/form-data" class="w-full" id="form">
+          <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                </svg>
+                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+            </div>
+            <input id="dropzone-file" type="file" />
+        </label>
+
+        <div class="mt-8 text-center">
+            <button type="submit" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-32 py-5 text-center me-2 mb-2">Upload Image</button>
+        </div>
+        </form>
+      </div> 
+    </div>
+</div>
+</body>
+
+<script>
+  // Function to get query parameters
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const userID = getQueryParam('id');
+
+  document.getElementById('form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    const imageInput = document.getElementById('dropzone-file');
+    const formData = new FormData();
+
+    if (imageInput.files.length > 0) {
+      formData.append('image', imageInput.files[0]);
+    } else {
+      alert('No file selected');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/upload/${userID}`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert(result.message);
+        window.location.href = `/generate/${userID}?id=${userID}`;
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.log('Error uploading image:', error);
+    }
+  })
+</script>
+</html>

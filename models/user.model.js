@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    jobtitle : {
+        type: String,
+        required: true,
+        trim: true
+    },
     address: {
         type: String,
         required: true,
