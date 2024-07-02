@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const app = express();
-const UserServices = require('../services/user.services');
-const SocialService = require('../services/socials.service');
-
-app.set('view engine', 'ejs');
-app.set('views', './public/views');
 
 router.get('/', (req, res) => {
   res.sendFile('index.html', { root: 'public' });
@@ -34,5 +29,9 @@ router.get('/details', (req, res)=>{
 router.get('/generate/:id', async (req, res) => {
   res.sendFile('generate.html', { root: 'public' });
 });
+
+router.get('/upload/:id', async (req, res) => {
+  res.sendFile('upload.html', { root: 'public' });
+})
 
 module.exports = router;
