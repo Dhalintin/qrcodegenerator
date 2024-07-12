@@ -7,15 +7,132 @@
     <title>QR Code</title>
     <link rel="stylesheet" href="./styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Raleway+Dots&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <div class="flex justify-center items-center h-screen">
-        <a href="./siteone"><div class="py-12 px-16 bg-slate-800 text-gray-300 font-bold text-xl mx-4 shadow-md shadow-slate-950 hover:shadow-lg hover:shadow-black text-center rounded-lg">First Design</div></a>
-        <a href="./sitetwo"><div class="py-12 px-16 bg-slate-800 text-gray-300 font-bold text-xl mx-4 shadow-md shadow-slate-950 hover:shadow-lg hover:shadow-black text-center rounded-lg">Second Design</div></a>
+<body style="font-family: Bubbler;">
+    <!-- Header -->
+    <div class="bg-gray-200 bg-opacity-20 h-16 md:h-20">
+        <div class="flex justify-end pr-16 pt-4">
+            <div class="md:hidden" id="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>  
+            </div>
+            <div class="md:hidden fixed top-0 mt-16 hidden bg-[#3fa7e4] p-12" id="menu">
+                <ul>
+                    <li class="text-slate-950 border-b-2 border-gray-700 w-40 p-3 mb-2 text-lg rounded-md">Login</li>
+                    <a href="/signup"><li class="text-slate-950 border-b-2 border-gray-700 w-40 p-3 mb-2 text-lg rounded-md">Sign Up</li></a>
+                </ul>
+            </div>
+            <a href="#login" class="px-6 rounded-lg py-3 shadow-sm shadow-gray-500 hover:shadow-lg hover:shadow-gray-600 mx-4 hidden md:block bg-slate-800 text-gray-200">Login</a>
+            <a href="/signup" class="px-6 rounded-lg py-3 shadow-sm shadow-gray-500 hover:shadow-lg hover:shadow-gray-600 mx-4 hidden md:block bg-slate-800 text-gray-200">Sign Up</a>
+        </div>
     </div>
+    <!-- Header -->
 
+    <!-- Body -->
+    <div class="md:grid md:grid-cols-3 md:mt-16 mt-1">
+        <div class="md:grid md:col-span-2 w-4/5 pl-12 pt-8 md:pt-16">
+            <div>
+                <div class="text-4xl font-semibold mb-2" style="font-family: Bubbler;">Unleash Your Digital Identity with a Snap!</div>
+                <div class="text-xl" style="font-family: Lobster, cursive;">
+                    Welcome!🖐️ Instantly generate sleek QR codes and stylish online complementary cards. Say hello 👋 to instant connections! Dive in and let your digital persona shine!
+                </div>
+            </div>
+            <div class="flex justify-end text-lg">
+                <a href="/details" class="bg-slate-800 rounded-lg shadow-gray-600 shadow-md hover:shadow-lg hover:shadow-gray-700 w-64 h-12 my-6 text-gray-200 p-2 flex justify-center pt-3">Generate QR code 
+                    <span class="pt-1 pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                          </svg>
+                    </span>
+                      
+                </a>
+            </div>
+        </div>
+        <div class="m-3 p-6 h-full rounded-lg bg-slate-800">
+            <div class="text-gray-200 font-normal text-3xl mb-8">Login</div>
+            <form class="max-w-sm mx-auto" method="POST" id="login-form">
+                <div class="mb-5">
+                    <label for="email" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Email</label>
+                    <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Password</label>
+                    <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                </div>
+                <div class="md:flex">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
 
-    <script src="./qrcode.js"></script>
+                    <div class="text-gray-300 md:pl-12 pt-2">Don't have an account? <a href="/signup" class="text-blue-600 underline capitalize">Register</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- End of Body -->
 </body>
+
+<script>
+    const menuButton = document.getElementById("menu-button");
+    const menu = document.getElementById("menu");
+    const form = document.getElementById('login-form');
+
+    function toggleMenu(){
+        menu.classList.toggle('hidden');
+    }
+
+    menuButton.addEventListener('click', toggleMenu);
+
+    async function login(email, password) {
+      try {
+        fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({email, password}),
+        }) 
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            localStorage.setItem('token', data.token);
+            const user = {
+                id: data.user._id,
+                firstname: data.user.firstname,
+                lastname: data.user.lastname,
+                email: data.user.email,
+                detail: data.detail,
+            }
+            const details = {
+                detail: data.detail,
+            }
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('details', JSON.stringify(details));
+            window.location.href = '/details';
+          }else{
+            alert(data.message)
+          }
+        })
+        .catch(error => {
+          console.log('Error fetching users:', error);
+        });
+      } catch (error) {
+        console.log('Error fetching data:', error);
+      }
+    }
+
+
+    
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      await login(email, password)
+    });
+</script>
 </html>
+

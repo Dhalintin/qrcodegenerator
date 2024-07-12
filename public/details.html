@@ -9,31 +9,52 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <div class="flex justify-center items-center md:h-screen h-full text-gray-200">
+   <!-- Header -->
+  <div class="bg-slate-200 bg-opacity-20 h-16 md:h-20">
+    <div class="flex justify-end pr-12 pt-4">
+        <div class="md:hidden" id="menu-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>  
+        </div>
+        <div class="md:hidden fixed top-0 mt-16 hidden bg-[#3fa7e4] p-12" id="menu">
+            <ul>
+                <li class="text-slate-950 border-b-2 border-gray-700 w-40 p-3 mb-2 text-lg rounded-md" id="login">Login</li>
+                <a href="/signup"><li class="text-slate-950 border-b-2 border-gray-700 w-40 p-3 mb-2 text-lg rounded-md">Sign Up</li></a>
+            </ul>
+        </div>
+        <div id="userInfo" class="flex">
+          <a href="/" class="px-6 rounded-lg py-3 shadow-sm shadow-gray-500 hover:shadow-lg hover:shadow-gray-600 mx-4 hidden md:block bg-slate-800 text-gray-200">Login</a>
+        <a href="/signup" class="px-6 rounded-lg py-3 shadow-sm shadow-gray-500 hover:shadow-lg hover:shadow-gray-600 mx-4 hidden md:block bg-slate-800 text-gray-200">Sign Up</a>
+        </div>
+    </div>
+  </div>
+<!-- Header -->
+  <div class="flex justify-center items-center mt-4 h-full text-gray-200">
     <div class="md:w-3/4 rounded-sm shadow-lg shadow-gray-900 bg-slate-800 p-4">
       <form method="POST" class="w-full h-full md:grid md:grid-cols-3" id="form">
         <div class="md:grid md:col-span-2">
           <!-- Name Field -->
-          <div class="flex flex-wrap -mx-3 mb-2">
+          <div class="flex flex-wrap mx-3 mb-2">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
-                First Name <span class="flex items-end text-red-400 ml-52 md:ml-60">*</span>
+                First Name <span class="flex items-end text-red-400 ml-48 md:ml-52 md:pl-6">*</span>
               </label>
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Firstname" required>
             </div>
             <div class="w-full md:w-1/2 px-3">
               <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
-                Last Name <span class="flex items-end text-red-400 ml-52 md:ml-60">*</span>
+                Last Name <span class="flex items-end text-red-400 ml-48 md:ml-60">*</span>
               </label>
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" type="text" placeholder="Lastname" required>
             </div>
           </div>
           <!-- End of name field -->
-          <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="flex flex-wrap mx-3 mb-6">
             <!-- Email field -->
             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
-                Job Title<span class="flex items-end text-red-400 ml-56 pl-3 md:ml-56 md:pl-4">*</span>
+                Job Title<span class="flex items-end text-red-400 ml-48 pl-3 md:ml-56 md:pl-4">*</span>
               </label>
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobtitle" type="text" placeholder="Job Title" required>
             </div>
@@ -41,15 +62,14 @@
             <!-- Phone -->
             <div class="w-full md:w-1/2 px-3">
               <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
-                Email <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-64 md:pl-4">*</span>
+                Email <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-56 md:pl-4">*</span>
               </label>
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email" required>
-              
             </div>
             <!-- End of Phone -->
           </div>
           <!-- Address -->
-          <div class="flex -mx-3 mb-3">
+          <div class="flex mx-3 mb-3">
             <div class="w-full px-3">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="address">
                 Address
@@ -60,7 +80,7 @@
           <!-- End of Address -->
 
           <!-- About -->
-          <div class="flex -mx-3 mb-3">
+          <div class="flex mx-3 mb-3">
             <div class="w-full px-3">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="about">
                 About Yourself
@@ -81,11 +101,11 @@
               <input type="checkbox" name="telegram-check" id="telegram-check" class="rounded-full h-4 w-4 mt-1 mx-2">Telegram
             </div>
           </div>
-          <div class="md:pl-6 mt-2 md:mt-5 text-gray-700">
+          <div class="md:pl-6 ml-4 md:ml-1 mt-2 md:mt-5 text-gray-700">
             <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
                 <img src="./images/facebook2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
                 <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
-                <input type="text" name="facebook" id="facebook" class="rounded-lg border-none focus:outline-none ml-1 w-full">
+                <input type="text" name="facebook" id="facebook" class="rounded-lg border-none focus:outline-none ml-1 w-full" :disabled="isDisabled ? 'opacity-50 cursor-not-allowed' : ''">
         </div>
         <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
             <img src="./images/instagram2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
@@ -136,8 +156,9 @@
     const phone = document.getElementById("phone");
     const lastName = document.getElementById("last-name");
     const firstName = document.getElementById("first-name");
-    const whatsappCheck = document.getElementById('whatsapp-check');
+    const whatsappCheck = document.getElementById("whatsapp-check");
     const telegramCheck = document.getElementById("telegram-check");
+    const jobtitle = document.getElementById("jobtitle");
 
     whatsappCheck.addEventListener('change', ()=>{
         if(whatsappCheck.checked && phone.value.length > 0){
@@ -180,10 +201,11 @@
             address: address.value,
             about: about.value,
             phone: phone.value,
+            jobtitle: jobtitle.value,
             facebook: facebook.value ? `https://www.facebook.com/${facebook.value}` : "",
             linkedin: linkedin.value ? `https://www.linkedin.com/in/${linkedin.value}` : "",
             instagram: instagram?.value ? `https://www.instagram.com/${instagram.value}` : "",
-            whatsapp: whatsapp.value ? `https://www.wa.me/${whatsapp.value}` : "",
+            whatsapp: whatsapp.value ? `https://wa.me/${whatsapp.value}` : "",
             telegram: telegram.value ? `https://www.t.me/${telegram.value}` : "",
             twitter: twitter.value ? `https://www.twitter.com/${twitter.value}` : "",
           }),
@@ -211,6 +233,32 @@
       event.preventDefault();
       await saveData();
     });
-  </script>
-    
+
+
+    window.onload = function() {
+      const fname = document.getElementById('first-name')
+      const lname = document.getElementById('last-name')
+      const email = document.getElementById('email')
+        const token = localStorage.getItem('token');
+        const user =  JSON.parse(localStorage.getItem('user'));
+        const details =  JSON.parse(localStorage.getItem('details'));
+
+        if (token && !details) {
+          document.getElementById('userInfo').innerHTML = `<span class="hidden md:block">${user.firstname}</span>`;
+          fname.value = user.firstname;
+          lname.value = user.lastname;
+          email.value = user.email;
+
+          fname.setAttribute("disabled", true)
+          lname.setAttribute("disabled", true)
+          email.setAttribute("disabled", true)
+
+          fname.classList.add("opacity-80");
+          lname.classList.add("opacity-80");
+          email.classList.add("opacity-80");
+        }else{
+          window.location.href = `/generate/${user.id}?id=${user.id}`;
+        }
+      }
+</script>
 </html>

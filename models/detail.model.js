@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-    firstname: {
+const detailSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    jobtitle : {
         type: String,
         required: true,
         trim: true
     },
-    lastname : {
+    address: {
         type: String,
         required: true,
-        trim: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
         trim: true,
-        lowercase: true,
     },
-    password: {
+    phone: {
         type: String,
         required: true,
+        trim: true,
+    },
+    about: {
+        type: String,
+        required: true,
+        trim: true,
     },
     createdAt: {
         type: Date,
@@ -32,7 +36,7 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Details', detailSchema);
 
 
 

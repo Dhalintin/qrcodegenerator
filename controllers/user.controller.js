@@ -2,26 +2,147 @@ const UserService = require('../services/user.services');
 const SocialService = require('../services/socials.service');
 const ImageService = require('../services/image.service')
 const ImageUtil = require('../utils/image.util');
-const fs = require('fs')
+const fs = require('fs');
+const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
 
 class UserController {
-    async save(req, res){
+    async signup(req, res){
         try{
-            const { 
-                firstname, lastname, email, address, about, facebook, linkedin, instagram, whatsapp, telegram, twitter 
-            } = req.body
-
-            const existingEmail = await UserService.userEmail(email);
-
-            if(existingEmail){
+            const { firstname, lastname, email, password }  = req.body;
+            const userPassword  = req.body.password;
+            const existingUser = await UserService.userEmail(email);
+            if(existingUser){
                 return res.status(400).json({
                     success: false,
-                    message: "Email already in use"
+                    message: "This email has already been used by another user"
+                })                
+            }
+
+            const passwordHash = await argon2.hash(password, {
+                type: argon2.argon2id,
+                saltLength: 16,
+                timeCost: 5,
+                memoryCost: 2048,
+            });
+            const newUser = await UserService.register(firstname, lastname, email, passwordHash);
+            
+            if(!newUser){
+                return res.status(500).json({
+                    success: false,
+                    message: "Registration failed!"
                 })
             }
 
-            const user = await UserService.saveDetails(firstname, lastname, email, address, about);
+            const link = 'https://standardization-test.onrender.com/api/v1/user/login';
+            const emailMessage = `<h2>Welcome to Krypton Secure</h2> <p>You have successful registered on Krypton Secure. Please proceed to link in on <a href="${link}">${link}</a></p>`;
+
+            try{
+                await sendMail(email, emailMessage);
+            }catch(error){
+                res.staus(401).json({
+                    success: false,
+                    message: "Mail wasn't sent!"
+                })
+            }
+
+            
+            return res.status(200).json({
+                success: true,
+                message: `<h1>Your registration is complete!</h1>
+                <p>Check your inbox for instructions on how to get started with Krypton Secure.</p>
+                <h4>Tip:  If you don't see our email, be sure to check your spam folder and mark it as "not spam" to ensure you receive future updates.</h4>`,
+                data: newUser
+            })
+
+        }catch(error){
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }
+    }
+
+    async login(req, res){
+        try{
+            const { email, password } = req.body;
+            const user = await UserService.userEmail(email);
+            if(!user){
+                return res.status(404).json({
+                    success: false,
+                    message: "Username or password incorrect!"
+                })
+            }
+            const details = await UserService.findDetails(user._id);
+
+            const isVerified = await argon2.verify(user.password, password);
+            if(!isVerified){
+                return res.status(401).json({
+                    success: false,
+                    message: "Authentications failed"
+                });
+            }
+
+            const token = jwt.sign({
+                email: user.email,
+                userId: user._id,
+                firstname: user.firstname,
+            }, process.env.JWT_KEY, {
+                expiresIn: "24h",
+            });
+
+            return res.status(200).json({
+                success: true,
+                message: "Login Successful",
+                user: user,
+                detail: details,
+                token: token
+            })
+        }catch(error){
+            res.status(401).json({
+                success: false,
+                message: error.message
+            })
+        }
+    }
+
+    async save(req, res){
+        try{
+            const { 
+                firstname, lastname, email, address, about, facebook, linkedin, instagram, whatsapp, telegram, twitter, jobtitle, phone 
+            } = req.body
+
+            const existingUser = await UserService.userEmail(email);
+
+            if(existingUser){
+                const existingDetails = await UserService.findDetails(existingUser._id)
+                if(existingDetails){
+                    return res.status(400).json({
+                        success: false,
+                        message: "Email already in use"
+                    })
+                }else{
+                    const uid = existingUser._id;
+                    const user = existingUser
+                    const details = await UserService.saveDetails(uid, jobtitle, phone, address, about)
+                    const socials = await SocialService.saveDetails( uid, facebook, linkedin, instagram, whatsapp, telegram, twitter)
+
+                    return res.status(200).json({
+                        success: true,
+                        message: "User created successfully",
+                        data: {
+                            user,
+                            details,
+                            socials,
+                            link: `https://dhalintin.github.io/qrcodegenerator/${user._id}`
+                        }
+                    })
+                }
+            }
+
+            const user = await UserService.saveUser(firstname, lastname, email);
             const userId = user._id;
+            const details = await UserService.saveDetails(userId, jobtitle, phone, address, about)
             const socials = await SocialService.saveDetails( userId, facebook, linkedin, instagram, whatsapp, telegram, twitter)
 
             return res.status(200).json({
@@ -29,6 +150,7 @@ class UserController {
                 message: "User created successfully",
                 data: {
                     user,
+                    details,
                     socials,
                     link: `https://dhalintin.github.io/qrcodegenerator/${user._id}`
                 }
@@ -70,6 +192,7 @@ class UserController {
         const userId = req.params.id
         try{
             const user = await UserService.getUser(userId);
+            const details = await UserService.findDetails(userId);
             const socials = await SocialService.getSocials(userId)
             const image = await ImageService.findImage(userId)
 
@@ -79,13 +202,13 @@ class UserController {
                     message: "User doesn't exist"
                 })
             }
-            console.log(image)
 
             return res.status(200).json({
                 success: true,
                 message: "Successful",
                 data: {
                     user,
+                    details,
                     socials,
                     image
                 }
@@ -154,6 +277,26 @@ class UserController {
                 message: error.message
             })
         }
+    }
+
+    async getDetails(req, res){
+        const userId = req.params.id;
+
+        const details = await UserService.getDetail(userId);
+
+        if(details.length > 0){
+            console.log(details)
+            return res.status(200).json({
+                success: false,
+                message: "No detail retrieved"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Successful",
+            data: details
+        })
     }
 }
 
