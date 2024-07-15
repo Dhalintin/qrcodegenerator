@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Cambria', sans-serif;
+    /* font-family: 'Cambria', sans-serif; */
     box-sizing: border-box;
 }body{
     background: #3fa7e4;
@@ -97,5 +97,13 @@
         transform: translateX(0);
     }
     
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, 
+textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus,
+select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 20px rgba(30, 41, 59, 0) inset !important;
+    -webkit-text-fill-color: rgb(158, 154, 154) !important;
+    transition: background-color 5000s ease-in-out 0s !important;
 }
 

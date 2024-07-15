@@ -17,4 +17,20 @@ const userSchemaValidation = Joi.object({
 
 });
 
-module.exports = { userSchemaValidation };
+const signupSchemaValidation = Joi.object({
+    email: Joi.string().email().required(),
+    firstname: Joi.string().min(2).required(),
+    lastname: Joi.string().min(2).required(),
+    password: Joi.string()
+        .min(8)
+        .required()
+});
+
+const loginSchemaValidation = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string()
+        .min(8)
+        .required()
+});
+
+module.exports = { userSchemaValidation, loginSchemaValidation, signupSchemaValidation };

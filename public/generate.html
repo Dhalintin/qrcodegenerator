@@ -21,11 +21,23 @@
         fetch(`/api/${userID}`)
         .then(response => response.json())
         .then(data => {
+          localStorage.setItem('details', JSON.stringify(data.data.details));
+          localStorage.setItem('image', JSON.stringify(data.data.image));
+
           const name = `${data.data.user.firstname} ${data.data.user.lastname}`
           document.getElementById('name').textContent = name;
           document.getElementById('phone').innerHTML = `<a class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-sm inline" href="tel:${data.data.user.phone}">Text Me</a>`;
-          document.getElementById('about').textContent = data.data.user.about;
+          
+          if (data.data.details.about.length <= 200) {
+            document.getElementById('about').textContent = data.data.details.about;
+          }else{
+            document.getElementById('about').textContent = data.data.details.about.substring(0, 300) + ' ....';;
+          }
+          
+          document.getElementById('jobtitle').textContent = data.data.details.jobtitle;
+          document.getElementById('meetme').setAttribute('href', `/about/${data.data.user._id}?id=${data.data.user._id}`);
           const socials = data.data.socials[0];
+
           for (const key in socials) {
             if (socials.hasOwnProperty(key)) {
               if(key !== 'userId' && key !== "_id"){
@@ -40,8 +52,44 @@
           const base64String = `data:${data.data.image[0].format};base64,${data.data.image[0].imageData}`
           const imgElement = document.getElementById('imagePreview');
           imgElement.src = base64String;
-        })
-      });
+
+          const userData = 
+`Name: ${data.data.user.firstname} ${data.data.user.lastname},
+phone: ${data.data.user.phone},
+More: /generate/${data.data.user._id}?id=${data.data.user._id}`
+    
+if(localStorage.getItem('token')){
+  const user =  JSON.parse(localStorage.getItem('user'));
+  if(user.id !== data.data.user._id){
+    document.getElementById('downloadQRButton').classList.add('hidden')
+  }
+};
+const encodedData = encodeURI(userData);
+const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
+const qrsect = document.getElementById('qrsect');
+qrsect.src = qrURL;
+
+// Add a click event listener to the button to download the QR code
+document.getElementById('downloadQRButton').addEventListener('click', async () => {
+event.preventDefault();
+if (qrImage.src) {
+const response = await fetch(qrImage.src);
+if (!response.ok) {
+alert("Error fetching QR code image!");
+return;
+}
+
+const blob = await response.blob();
+const url = window.URL.createObjectURL(blob);
+const link = document.createElement("a");
+link.href = url;
+link.download = "qr_code.png";
+link.click();
+window.URL.revokeObjectURL(url);
+}
+});
+})
+});
     </script>
 </head>
 <body>
@@ -50,29 +98,34 @@
         <div class="md:grid md:grid-cols-3">
             <div class="md:grid md:col-span-1 mx-5">
                 <img id="imagePreview" alt="Image Preview" class="h-72 w-52 object-cover rounded-lg"/>
-                <!-- <img id="profile-image" alt="profile picture" class="rounded-lg"> -->
+                <img src="" alt="" id="qrsect" class="hidden"/>
             </div>
             <div class="md:grid col-span-2 mx-3">
                 <div class="md:grid md:grid-cols-10">
                     <div class="md:grid col-span-9">
                         <div>
                             <span class="block text-3xl tracking-tight">Hi, I am <span id="name"></span></span>
-                            <span class="text-[#3fa7e4] text-lg">Product Designer (UI/UX)</span>
+                            <span class="text-[#3fa7e4] text-lg" id="jobtitle"></span>
                         </div>
                         <div id="about"></div>
                         <div>
                             <div class="flex justify-evenly space-evenly mt-4">
-                                <a href="/about" class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm">Meet Me</a>
+                                <a id="meetme" class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm" >Meet Me</a>
                                 <span id="phone" class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm"></span>
+                                <div class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm" id="downloadQRButton">Generate QR Code</div>
                             </div>
                         </div>
                     </div>
                     <div class="fixed top-0 md:top-12 lg:top-32 right-5 md:right-44 lg:right-80 md:grid md:col-span-1 ml-8 py-16" id="socials"></div>
                 </div>
-                
             </div>
         </div>
     </div>
 </div>
 </body>
+
+<script>
+  
+  
+</script>
 </html>
