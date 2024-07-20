@@ -21,8 +21,7 @@
         fetch(`/api/${userID}`)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-
+          console.log(data.data.socials[0].whatsapp)
           const name = `${data.data.user.firstname} ${data.data.user.lastname}`
           document.getElementById('name').textContent = name;
           document.getElementById('phone').innerHTML = `<a class="rounded-lg bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold font-frsm md:w-24" href="tel:${data.data.user.phone}">Text Me</a>`;
@@ -52,12 +51,18 @@
           const imgElement = document.getElementById('imagePreview');
           imgElement.src = base64String;
 
+          console.log();
           const userData = 
-`Name: ${data.data.user.firstname} ${data.data.user.lastname},
+`${data.data.user.firstname} ${data.data.user.lastname},
+${data.data.details.address},
+Email: ${data.data.user.email}
 phone: ${data.data.details.phone},
+Whatsapp: ${data.data.socials[0].whatsapp}
 More: https://qrcodegenerator-2d5z.onrender.com/generate/${data.data.user._id}?id=${data.data.user._id}`
+console.log(userData)
     
-          const encodedData = encodeURI(userData);
+          const encodedData = encodeURIComponent(userData);
+          console.log(encodedData)
           const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
           const qrsect = document.getElementById('qrsect');
           qrsect.src = qrURL;
