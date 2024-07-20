@@ -25,7 +25,7 @@
 
           const name = `${data.data.user.firstname} ${data.data.user.lastname}`
           document.getElementById('name').textContent = name;
-          document.getElementById('phone').innerHTML = `<a class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-sm inline" href="tel:${data.data.user.phone}">Text Me</a>`;
+          document.getElementById('phone').innerHTML = `<a class="rounded-lg bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold font-frsm md:w-24" href="tel:${data.data.user.phone}">Text Me</a>`;
           
           if (data.data.details.about.length <= 200) {
             document.getElementById('about').textContent = data.data.details.about;
@@ -55,7 +55,7 @@
           const userData = 
 `Name: ${data.data.user.firstname} ${data.data.user.lastname},
 phone: ${data.data.details.phone},
-More: https://qrcodegenerator-2d5z.onrender.com/${data.data.user._id}?id=${data.data.user._id}`
+More: https://qrcodegenerator-2d5z.onrender.com/generate/${data.data.user._id}?id=${data.data.user._id}`
     
           const encodedData = encodeURI(userData);
           const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
@@ -124,10 +124,11 @@ More: https://qrcodegenerator-2d5z.onrender.com/${data.data.user._id}?id=${data.
                         </div>
                         <div id="about"></div>
                         <div>
-                            <div class="flex justify-evenly space-evenly mt-4">
-                                <a id="meetme" class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm" >Meet Me</a>
-                                <span id="phone" class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm"></span>
-                                <div class="rounded-full bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm" id="downloadQRButton">Generate QR Code</div>
+                            <div class="md:flex md:justify-evenly md:space-evenly mt-4">
+                                <div class="mb-3 rounded-lg bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm w-40 md:w-24"><a id="meetme" class="" >Meet Me</a></div>
+                                <div id="phone" class="rounded-lg bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm mb-3 w-32"></div>
+                                <!-- <div class="rounded-lg bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm mb-3 w-44" id="downloadQRButton">Generate QR Code</div> -->
+                                <!-- <div class="rounded-lg bg-[#3fa7e4] px-2 py-1 text-slate-900 font-bold text-frsm w-40 md:w-44" id="downloadQRButton"></div> -->
                             </div>
                         </div>
                     </div>
