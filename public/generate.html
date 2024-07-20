@@ -55,7 +55,7 @@
           const userData = 
 `Name: ${data.data.user.firstname} ${data.data.user.lastname},
 phone: ${data.data.details.phone},
-More: https://qrcodegenerator-2d5z.onrender.com/${data.data.user._id}?id=${data.data.user._id}`
+More: https://qrcodegenerator-2d5z.onrender.com/generate/${data.data.user._id}?id=${data.data.user._id}`
     
           const encodedData = encodeURI(userData);
           const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
