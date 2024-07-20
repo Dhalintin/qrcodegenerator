@@ -106,8 +106,8 @@
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            alert(data.message)
-            window.location.href = `/upload/${data.data.user._id}?id=${data.data.user._id}`;
+            console.log(data.data)
+            window.location.href = `/details/${data.data.user._id}?id=${data.data.user._id}`;
           }else{
             loginError.textContent = data.message
             setTimeout(() => {

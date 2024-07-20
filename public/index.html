@@ -5,114 +5,195 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Raleway+Dots&display=swap" rel="stylesheet">
 </head>
-<body style="font-family: Bubbler;">
-    <!-- Header -->
-    <div class="bg-gray-200 bg-opacity-20 h-16 md:h-20">
-        <div class="flex justify-end pr-16 pt-4">
-            <div class="md:hidden" id="menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>  
+<body>
+  <div class="flex justify-center items-center mt-4 h-screen text-gray-200">
+    <div class="md:w-3/4 rounded-sm shadow-lg shadow-gray-900 bg-slate-800 p-4">
+      <form method="POST" class="w-full h-full md:grid md:grid-cols-3" id="form">
+        <div class="md:grid md:col-span-2">
+          <!-- Name Field -->
+          <div class="flex flex-wrap mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
+                First Name <span class="flex items-end text-red-400 ml-48 md:ml-52 md:pl-6">*</span>
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Firstname" required>
             </div>
-            <div class="md:hidden fixed top-0 mt-16 hidden bg-[#3fa7e4] p-12" id="menu">
-                <ul>
-                    <li class="text-slate-950 border-b-2 border-gray-700 w-40 p-3 mb-2 text-lg rounded-md">Login</li>
-                    <a href="/signup"><li class="text-slate-950 border-b-2 border-gray-700 w-40 p-3 mb-2 text-lg rounded-md">Sign Up</li></a>
-                </ul>
+            <div class="w-full md:w-1/2 px-3">
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
+                Last Name <span class="flex items-end text-red-400 ml-48 md:ml-60">*</span>
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" type="text" placeholder="Lastname" required>
             </div>
-            <a href="#login" class="px-6 rounded-lg py-3 shadow-sm shadow-gray-500 hover:shadow-lg hover:shadow-gray-600 mx-4 hidden md:block bg-slate-800 text-gray-200">Login</a>
-            <a href="/signup" class="px-6 rounded-lg py-3 shadow-sm shadow-gray-500 hover:shadow-lg hover:shadow-gray-600 mx-4 hidden md:block bg-slate-800 text-gray-200">Sign Up</a>
-        </div>
-    </div>
-    <!-- Header -->
+          </div>
+          <!-- End of name field -->
+          <div class="flex flex-wrap mx-3 mb-6">
+            <!-- Email field -->
+            <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
+                Job Title<span class="flex items-end text-red-400 ml-48 pl-3 md:ml-56 md:pl-4">*</span>
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="jobtitle" type="text" placeholder="Job Title" required>
+            </div>
+            <!-- End of Email field -->
+            <!-- Phone -->
+            <div class="w-full md:w-1/2 px-3">
+              <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
+                Email <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-56 md:pl-4">*</span>
+              </label>
+              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Email" required>
+            </div>
+            <!-- End of Phone -->
+          </div>
+          <!-- Address -->
+          <div class="flex mx-3 mb-3">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="address">
+                Address
+              </label>
+              <textarea name="address" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+            </div>
+          </div>
+          <!-- End of Address -->
 
-    <!-- Body -->
-    <div class="md:grid md:grid-cols-3 md:mt-16 mt-1">
-        <div class="md:grid md:col-span-2 w-4/5 pl-12 pt-8 md:pt-16">
-            <div>
-                <div class="text-4xl font-semibold mb-2" style="font-family: Bubbler;">Unleash Your Digital Identity with a Snap!</div>
-                <div class="text-xl" style="font-family: Lobster, cursive;">
-                    Welcome!🖐️ Instantly generate sleek QR codes and stylish online complementary cards. Say hello 👋 to instant connections! Dive in and let your digital persona shine!
-                </div>
+          <!-- About -->
+          <div class="flex mx-3 mb-3">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="about">
+                About Yourself
+              </label>
+              <textarea name="about" id="about" rows="5" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
             </div>
-            <div class="flex justify-end text-lg">
-                <a href="/details" class="bg-slate-800 rounded-lg shadow-gray-600 shadow-md hover:shadow-lg hover:shadow-gray-700 w-64 h-12 my-6 text-gray-200 p-2 flex justify-center pt-3">Generate QR code 
-                    <span class="pt-1 pl-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                          </svg>
-                    </span>
-                      
-                </a>
+          </div>
+          <!-- End of About -->
+        </div>
+        <div>
+          <div class="mx-4 pt-3">
+            <label class="flex uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="phone">
+              Phone    <span class="flex items-end text-red-400 ml-56 pl-3 md:ml-56 md:pl-6">*</span>
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="phone" type="text" placeholder="Phone Number" required>
+            <div class="mt-1 flex">
+              <input type="checkbox" name="whatsapp-check" id="whatsapp-check" class="rounded-full h-4 w-4 mt-1 mx-2">Whatsapp
+              <input type="checkbox" name="telegram-check" id="telegram-check" class="rounded-full h-4 w-4 mt-1 mx-2">Telegram
             </div>
+          </div>
+          <div class="md:pl-6 ml-4 md:ml-1 mt-2 md:mt-5 text-gray-700">
+            <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+                <img src="./images/facebook2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+                <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.facebook.com/</span>
+                <input type="text" name="facebook" id="facebook" class="rounded-lg border-none focus:outline-none ml-1 w-full" :disabled="isDisabled ? 'opacity-50 cursor-not-allowed' : ''">
         </div>
-        <div class="m-3 p-6 h-full rounded-lg bg-slate-800">
-            <div class="text-gray-200 font-normal text-3xl mb-8">Login</div>
-            <form class="max-w-sm mx-auto" method="POST" id="login-form">
-                <div class="mb-5">
-                    <label for="email" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Email</label>
-                    <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                </div>
-                <div class="mb-5">
-                    <label for="password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Password</label>
-                    <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                </div>
-                <div class="md:flex">
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
-
-                    <div class="text-gray-300 md:pl-12 pt-2">Don't have an account? <a href="/signup" class="text-blue-600 underline capitalize">Register</a></div>
-                </div>
-            </form>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/instagram2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-xs tracking-tight pt-2 pl-1 text-gray-400">https://www.instagram.com/</span>
+            <input type="text" name="instagram" id="instagram" class="rounded-lg border-none focus:outline-none ml-1 w-full">
         </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/whatsapp2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://www.wa.me/</span>
+            <input type="text" name="whatsapp" id="whatsapp" class="rounded-lg border-none focus:outline-none ml-1 w-full">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/linkedin2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-xs tracking-tight pt-2 pl-1 text-gray-400">https://www.linkedin.com/in/</span>
+            <input type="text" name="linkedin" id="linkedin" class="rounded-lg border-none focus:outline-none ml-1 w-full">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/x2.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://twitter.com/</span>
+            <input type="text" name="x" id="x" class="rounded-lg border-none focus:outline-none ml-1 w-full">
+        </div>
+        <div class="mb-3 flex bg-white rounded-lg h-9 w-72">
+            <img src="./images/telegram.png" alt="" class="w-8 h-8 rounded-full object-fit bg-white shadow-blue-600 shadow-md flex">
+            <span class="text-sm tracking-tighter pt-2 pl-1 text-gray-400">https://t.me/</span>
+            <input type="text" name="telegram" id="telegram" class="rounded-lg border-none focus:outline-none ml-1 w-full">
+        </div>
+        <div class="flex justify-center mt-2">
+            <button type="submit" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-2xl px-20 py-2 text-center me-2 mb-2">Store</button>
+        </div>
+        </div>
+      </form>
     </div>
-    </div>
-    <!-- End of Body -->
+  </div> -->
 </body>
+  <script>
+    const downloadButton = document.getElementById("download-qr-code");
 
-<script>
-    const menuButton = document.getElementById("menu-button");
-    const menu = document.getElementById("menu");
-    const form = document.getElementById('login-form');
+    // Text Content
+    const telegram = document.getElementById("telegram");
+    const twitter = document.getElementById("x");
+    const linkedin = document.getElementById("linkedin");
+    const whatsapp = document.getElementById("whatsapp");
+    const facebook = document.getElementById("facebook");
+    const instagram = document.getElementById("instagram");
+    const about = document.getElementById("about");
+    const address = document.getElementById("address");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const lastName = document.getElementById("last-name");
+    const firstName = document.getElementById("first-name");
+    const whatsappCheck = document.getElementById("whatsapp-check");
+    const telegramCheck = document.getElementById("telegram-check");
+    const jobtitle = document.getElementById("jobtitle");
 
-    function toggleMenu(){
-        menu.classList.toggle('hidden');
-    }
+    whatsappCheck.addEventListener('change', ()=>{
+        if(whatsappCheck.checked && phone.value.length > 0){
+          whatsapp.value = phone.value;
+        }else{
+          whatsappCheck.checked = false
+          whatsapp.value = "";
+        }
+    })
 
-    menuButton.addEventListener('click', toggleMenu);
+    telegramCheck.addEventListener('change', ()=>{
+        if(telegramCheck.checked && phone.value.length > 0){
+            telegram.value = phone.value;
+        }else{
+            telegramCheck.checked = false
+            telegram.value = "";
+        }
+    });
 
-    async function login(email, password) {
+    phone.addEventListener('keyup', (event) => {
+      if(whatsappCheck.checked){
+        whatsapp.value = phone.value;
+      }
+      if(telegramCheck.checked){
+        telegram.value = phone.value;
+      }
+    });
+
+    async function saveData() {
       try {
-        fetch('/api/login', {
+        fetch('/api/save', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({email, password}),
+          body: JSON.stringify({
+            firstname: firstName.value,
+            lastname: lastName.value,
+            email: email.value,
+            address: address.value,
+            about: about.value,
+            phone: phone.value,
+            jobtitle: jobtitle.value,
+            facebook: facebook.value ? `https://www.facebook.com/${facebook.value}` : "",
+            linkedin: linkedin.value ? `https://www.linkedin.com/in/${linkedin.value}` : "",
+            instagram: instagram?.value ? `https://www.instagram.com/${instagram.value}` : "",
+            whatsapp: whatsapp.value ? `https://www.wa.me/${whatsapp.value}` : "",
+            telegram: telegram.value ? `https://www.t.me/${telegram.value}` : "",
+            twitter: twitter.value ? `https://www.twitter.com/${twitter.value}` : "",
+          }),
         }) 
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            localStorage.setItem('token', data.token);
-            const user = {
-                id: data.user._id,
-                firstname: data.user.firstname,
-                lastname: data.user.lastname,
-                email: data.user.email,
-                detail: data.detail,
-            }
-            const details = {
-                detail: data.detail,
-            }
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('details', JSON.stringify(details));
-            window.location.href = '/details';
+            alert(data.message)
+            window.location.href = `/upload/${data.data.user._id}?id=${data.data.user._id}`;
           }else{
             alert(data.message)
           }
@@ -126,13 +207,11 @@
     }
 
 
-    
-    form.addEventListener('submit', async (event) => {
+    const formD = document.getElementById('form');
+    formD.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      await login(email, password)
+      await saveData();
     });
+
 </script>
 </html>
-

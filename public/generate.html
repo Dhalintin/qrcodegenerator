@@ -21,8 +21,7 @@
         fetch(`/api/${userID}`)
         .then(response => response.json())
         .then(data => {
-          localStorage.setItem('details', JSON.stringify(data.data.details));
-          localStorage.setItem('image', JSON.stringify(data.data.image));
+          console.log(data)
 
           const name = `${data.data.user.firstname} ${data.data.user.lastname}`
           document.getElementById('name').textContent = name;
@@ -55,40 +54,55 @@
 
           const userData = 
 `Name: ${data.data.user.firstname} ${data.data.user.lastname},
-phone: ${data.data.user.phone},
-More: /generate/${data.data.user._id}?id=${data.data.user._id}`
+phone: ${data.data.details.phone},
+More: https://qrcodegenerator-2d5z.onrender.com/${data.data.user._id}?id=${data.data.user._id}`
     
-if(localStorage.getItem('token')){
-  const user =  JSON.parse(localStorage.getItem('user'));
-  if(user.id !== data.data.user._id){
-    document.getElementById('downloadQRButton').classList.add('hidden')
-  }
-};
-const encodedData = encodeURI(userData);
-const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
-const qrsect = document.getElementById('qrsect');
-qrsect.src = qrURL;
+          const encodedData = encodeURI(userData);
+          const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
+          const qrsect = document.getElementById('qrsect');
+          qrsect.src = qrURL;
 
-// Add a click event listener to the button to download the QR code
-document.getElementById('downloadQRButton').addEventListener('click', async () => {
-event.preventDefault();
-if (qrImage.src) {
-const response = await fetch(qrImage.src);
-if (!response.ok) {
-alert("Error fetching QR code image!");
-return;
-}
+          document.getElementById('downloadQR').addEventListener('click', ()=>{
+            if(qrsect.src){
+              // Create a canvas to draw the image
+              const canvas = document.createElement('canvas');
+                  const ctx = canvas.getContext('2d');
+                  const img = new Image();
+                  img.crossOrigin = 'anonymous'; 
 
-const blob = await response.blob();
-const url = window.URL.createObjectURL(blob);
-const link = document.createElement("a");
-link.href = url;
-link.download = "qr_code.png";
-link.click();
-window.URL.revokeObjectURL(url);
-}
-});
-})
+                  img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+
+                    // Create a data URL from the canvas
+                    const dataURL = canvas.toDataURL('image/png');
+
+                    // Create a temporary anchor element
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = dataURL;
+                    downloadLink.download = `${data.data.user.firstname}Code.png`;
+
+                    // Append the anchor to the body
+                    document.body.appendChild(downloadLink);
+
+                    // Trigger the download
+                    downloadLink.click();
+
+                    // Remove the anchor from the body
+                    document.body.removeChild(downloadLink);
+                  };
+
+                  // Set the source of the image
+                  img.src = qrsect.src;
+            }else{
+              alert("QR Code is not available yet! Please be patient")
+            }
+          })
+
+          document.getElementById('downloadQR').classList.remove('hidden')
+
+          })
 });
     </script>
 </head>
@@ -99,6 +113,7 @@ window.URL.revokeObjectURL(url);
             <div class="md:grid md:col-span-1 mx-5">
                 <img id="imagePreview" alt="Image Preview" class="h-72 w-52 object-cover rounded-lg"/>
                 <img src="" alt="" id="qrsect" class="hidden"/>
+                <button id="downloadQR" class="rounded-lg px-3 py-2 mt-3 bg-[#3fa7e4] text-slate-900 font-bold text-frsm hidden">Download QR Code</button>
             </div>
             <div class="md:grid col-span-2 mx-3">
                 <div class="md:grid md:grid-cols-10">
