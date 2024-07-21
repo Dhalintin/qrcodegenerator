@@ -10,7 +10,7 @@ class UserController {
     async signup(req, res){
         try{
             const { firstname, lastname, email, password }  = req.body;
-            const userPassword  = req.body.password;
+            
             const existingUser = await UserService.userEmail(email);
             if(existingUser){
                 return res.status(400).json({
@@ -34,24 +34,10 @@ class UserController {
                 })
             }
 
-            const link = 'https://standardization-test.onrender.com/api/v1/user/login';
-            const emailMessage = `<h2>Welcome to Krypton Secure</h2> <p>You have successful registered on Krypton Secure. Please proceed to link in on <a href="${link}">${link}</a></p>`;
-
-            try{
-                await sendMail(email, emailMessage);
-            }catch(error){
-                res.staus(401).json({
-                    success: false,
-                    message: "Mail wasn't sent!"
-                })
-            }
-
-            
+                       
             return res.status(200).json({
                 success: true,
-                message: `<h1>Your registration is complete!</h1>
-                <p>Check your inbox for instructions on how to get started with Krypton Secure.</p>
-                <h4>Tip:  If you don't see our email, be sure to check your spam folder and mark it as "not spam" to ensure you receive future updates.</h4>`,
+                message: 'Successful!',
                 data: newUser
             })
 
@@ -115,29 +101,7 @@ class UserController {
             const existingUser = await UserService.userEmail(email);
 
             if(existingUser){
-                const existingDetails = await UserService.findDetails(existingUser._id)
-                if(existingDetails){
-                    return res.status(400).json({
-                        success: false,
-                        message: "Email already in use"
-                    })
-                }else{
-                    const uid = existingUser._id;
-                    const user = existingUser
-                    const details = await UserService.saveDetails(uid, jobtitle, phone, address, about)
-                    const socials = await SocialService.saveDetails( uid, facebook, linkedin, instagram, whatsapp, telegram, twitter)
-
-                    return res.status(200).json({
-                        success: true,
-                        message: "User created successfully",
-                        data: {
-                            user,
-                            details,
-                            socials,
-                            link: `https://dhalintin.github.io/qrcodegenerator/${user._id}`
-                        }
-                    })
-                }
+                console.log(existingUser)
             }
 
             const user = await UserService.saveUser(firstname, lastname, email);

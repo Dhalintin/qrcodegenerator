@@ -12,7 +12,7 @@ const userSchemaValidation = Joi.object({
     linkedin: Joi.string().uri().allow('').pattern(/^https:\/\/www.linkedin.com\/in\//),
     instagram: Joi.string().uri().allow('').pattern(/^https:\/\/www.instagram.com\//),
     twitter: Joi.string().uri().allow('').pattern(/^https:\/\/www.twitter.com\//),
-    whatsapp: Joi.string().uri().allow('').pattern(/^https:\/\/www.wa.me\//),
+    whatsapp: Joi.string().uri().allow('').pattern(/^https:\/\/wa.me\//),
     telegram: Joi.string().uri().allow('').pattern(/^https:\/\/www.t.me\//),
 
 });

@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 
 router.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('home.html', { root: 'public' });
 });
 
 router.get('/siteone', (req, res) => {
@@ -22,7 +22,7 @@ router.get('/about/:id', (req, res) => {
   res.sendFile('about.html', { root: 'public/sitetwo'})
 });
 
-router.get('/details', (req, res)=>{
+router.get('/details/:id', (req, res)=>{
   res.sendFile('details.html', { root: 'public'})
 });
 
